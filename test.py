@@ -1,6 +1,7 @@
 import unittest
 from p1 import block_length, new_direction
 from p2 import get_num, get_index_of, is_in_bounds, get_next_pos, solve_code, KEY_PAD_1, KEY_PAD_2
+from p3 import is_valid_triangle
 
 
 class TestP1(unittest.TestCase):
@@ -84,6 +85,11 @@ class TestP2(unittest.TestCase):
         self.assertEqual(get_next_pos((2, 1), 'D', KEY_PAD_2), (2, 2))
         self.assertEqual(get_next_pos((2, 2), 'D', KEY_PAD_2), (2, 3))
         self.assertEqual(get_next_pos((2, 3), 'D', KEY_PAD_2), (2, 4))
+
+
+class TestP3(unittest.TestCase):
+    def test_is_valid_triangle(self):
+        self.assertFalse(is_valid_triangle((5, 10, 25)))
 
 
 if __name__ == '__main__':
