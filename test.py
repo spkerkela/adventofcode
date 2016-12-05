@@ -3,6 +3,7 @@ from p1 import block_length, new_direction
 from p2 import get_num, get_index_of, is_in_bounds, get_next_pos, solve_code, KEY_PAD_1, KEY_PAD_2
 from p3 import is_valid_triangle
 from p4 import is_real_room, get_checksum, get_code, get_room_id, get_sum_of_codes, decrypt_name
+from p5 import get_password, get_password2
 
 
 class TestP1(unittest.TestCase):
@@ -126,6 +127,12 @@ class TestP4(unittest.TestCase):
 
     def test_decrypt_name(self):
         self.assertEqual(decrypt_name('qzmt-zixmtkozy-ivhz', 343), 'very encrypted name')
+
+
+class TestP5(unittest.TestCase):
+    def test_get_password(self):
+        self.assertEqual('18f47a30', get_password('abc'), )
+        self.assertEqual('05ace8e3', get_password2('abc'), )
 
 
 if __name__ == '__main__':
