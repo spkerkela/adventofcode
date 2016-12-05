@@ -2,6 +2,7 @@ import unittest
 from p1 import block_length, new_direction
 from p2 import get_num, get_index_of, is_in_bounds, get_next_pos, solve_code, KEY_PAD_1, KEY_PAD_2
 from p3 import is_valid_triangle
+from p4 import is_real_room, get_checksum, get_code, get_room_id, get_sum_of_codes, decrypt_name
 
 
 class TestP1(unittest.TestCase):
@@ -90,6 +91,41 @@ class TestP2(unittest.TestCase):
 class TestP3(unittest.TestCase):
     def test_is_valid_triangle(self):
         self.assertFalse(is_valid_triangle((5, 10, 25)))
+
+
+class TestP4(unittest.TestCase):
+    def test_is_real_room(self):
+        self.assertTrue(is_real_room('aaaaa-bbb-z-y-x-123[abxyz]'))
+        self.assertTrue(is_real_room('a-b-c-d-e-f-g-h-987[abcde]'))
+        self.assertTrue(is_real_room('not-a-real-room-404[oarel]'))
+        self.assertFalse(is_real_room('totally-real-room-200[decoy]'))
+
+    def test_get_checksum(self):
+        self.assertEqual(get_checksum('aaaaa-bbb-z-y-x-123[abxyz]'), 'abxyz')
+        self.assertEqual(get_checksum('a-b-c-d-e-f-g-h-987[abcde]'), 'abcde')
+        self.assertEqual(get_checksum('not-a-real-room-404[oarel]'), 'oarel')
+        self.assertEqual(get_checksum('totally-real-room-200[decoy]'), 'decoy')
+
+    def test_get_code(self):
+        self.assertEqual(get_code('aaaaa-bbb-z-y-x-123[abxyz]'), 'aaaaa-bbb-z-y-x')
+        self.assertEqual(get_code('a-b-c-d-e-f-g-h-987[abcde]'), 'a-b-c-d-e-f-g-h')
+        self.assertEqual(get_code('not-a-real-room-404[oarel]'), 'not-a-real-room')
+        self.assertEqual(get_code('totally-real-room-200[decoy]'), 'totally-real-room')
+
+    def test_get_room_id(self):
+        self.assertEqual(get_room_id('aaaaa-bbb-z-y-x-123[abxyz]'), 123)
+        self.assertEqual(get_room_id('a-b-c-d-e-f-g-h-987[abcde]'), 987)
+        self.assertEqual(get_room_id('not-a-real-room-404[oarel]'), 404)
+        self.assertEqual(get_room_id('totally-real-room-200[decoy]'), 200)
+
+    def test_sum_of_codes(self):
+        self.assertEqual(get_sum_of_codes(['aaaaa-bbb-z-y-x-123[abxyz]',
+                                           'a-b-c-d-e-f-g-h-987[abcde]',
+                                           'not-a-real-room-404[oarel]',
+                                           'totally-real-room-200[decoy]']), 1514)
+
+    def test_decrypt_name(self):
+        self.assertEqual(decrypt_name('qzmt-zixmtkozy-ivhz', 343), 'very encrypted name')
 
 
 if __name__ == '__main__':
