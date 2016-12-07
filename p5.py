@@ -29,7 +29,12 @@ def get_password2(input_string):
     return ''.join(password_slots)
 
 
-with open('data/data5.txt', mode='r') as f:
-    in_str = f.read().strip()
-    print(get_password(in_str))
-    print(get_password2(in_str))
+def get_passwords():
+    with open('data/data5.txt', mode='r') as f:
+        in_str = f.read().strip()
+        print(get_password(in_str))
+        print(get_password2(in_str))
+
+
+if __name__ == '__main__':
+    get_passwords()
