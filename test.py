@@ -4,6 +4,7 @@ from p2 import get_num, get_index_of, is_in_bounds, get_next_pos, solve_code, KE
 from p3 import is_valid_triangle
 from p4 import is_real_room, get_checksum, get_code, get_room_id, get_sum_of_codes, decrypt_name
 from p5 import get_password, get_password2
+from p6 import get_error_corrected
 
 
 class TestP1(unittest.TestCase):
@@ -131,8 +132,31 @@ class TestP4(unittest.TestCase):
 
 class TestP5(unittest.TestCase):
     def test_get_password(self):
-        self.assertEqual('18f47a30', get_password('abc'), )
-        self.assertEqual('05ace8e3', get_password2('abc'), )
+        self.assertEqual('18f47a30', get_password('abc'))
+        self.assertEqual('05ace8e3', get_password2('abc'))
+
+
+class TestP6(unittest.TestCase):
+    def test_error_corrected(self):
+        messages = [
+            'eedadn',
+            'drvtee',
+            'eandsr',
+            'raavrd',
+            'atevrs',
+            'tsrnev',
+            'sdttsa',
+            'rasrtv',
+            'nssdts',
+            'ntnada',
+            'svetve',
+            'tesnvt',
+            'vntsnd',
+            'vrdear',
+            'dvrsen',
+            'enarar'
+        ]
+        self.assertEqual(('easter', 'advent'), get_error_corrected(messages))
 
 
 if __name__ == '__main__':
