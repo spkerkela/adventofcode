@@ -6,6 +6,7 @@ from p4 import is_real_room, get_checksum, get_code, get_room_id, get_sum_of_cod
 from p5 import get_password, get_password2
 from p6 import get_error_corrected
 from p7 import supports_tls, is_abba, get_hyper_nets, sliced_to_n, supports_ssl, is_aba, compare_aba_pair
+from p8 import create_screen, rotate_screen
 
 
 class TestP1(unittest.TestCase):
@@ -207,6 +208,27 @@ class TestP7(unittest.TestCase):
         self.assertTrue(compare_aba_pair('bab', 'aba'))
         self.assertFalse(compare_aba_pair('xab', 'xba'))
         self.assertFalse(compare_aba_pair('xax', 'xax'))
+
+
+class TestP8(unittest.TestCase):
+    def test_create_screen(self):
+        self.assertEqual([['.', '.'],
+                          ['.', '.'],
+                          ['.', '.']], create_screen(2, 3))
+
+    def test_rotate_screen(self):
+        screen = [['#', '#', '#', '.', '.', '.', '.'],
+                  ['#', '#', '#', '.', '.', '.', '.'],
+                  ['.', '.', '.', '.', '.', '.', '.'],
+                  ['.', '.', '.', '.', '.', '.', '.']]
+
+        self.assertEqual([['#', '.', '#', '.', '.', '.', '.'],
+                          ['#', '#', '#', '.', '.', '.', '.'],
+                          ['.', '#', '.', '.', '.', '.', '.'],
+                          ['.', '.', '.', '.', '.', '.', '.']], rotate_screen(screen,
+                                                                              {'axis': 'row',
+                                                                               'index': 1,
+                                                                               'amount': 1}))
 
 
 if __name__ == '__main__':

@@ -1,6 +1,5 @@
 import re
 from itertools import islice
-import string
 
 regex = "(\[(?:\[??[^\[]*?\]))"
 
